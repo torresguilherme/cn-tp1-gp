@@ -15,4 +15,4 @@ with open(sys.argv[1], 'rb') as csvfile:
 #        print ', '.join(row)
 #        i += 1
     for row in reader:
-        print row
+        print (row)
