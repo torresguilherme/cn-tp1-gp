@@ -6,20 +6,27 @@ TRAINING_FILE_NAME = sys.argv[1]
 TEST_FILE_NAME = sys.argv[2]
 POPULATION = int(sys.argv[3])
 
+# classe Types -> guarda ints para representar o tipo do nó
 class Types:
     OPERATOR = 1
     CONSTANT = 2
     VARIABLE = 3
 
+# classe Data -> le os dados de um arquivo e os guarda na memória
 class Data():
+    # lê os valores no arquivo e os guarda
     def __init__(self, filename):
         with open(filename, "r") as csvfile:
             csvinput = csv.reader(csvfile)
             self.details = list(csvinput)
-    def get_value(self, row, col):
-        return self.details[row][col]
 
+    # obtem o valor numérico de uma posição do arquivo
+    def get_value(self, row, col):
+        return int(self.details[row][col])
+
+# classe Node -> representa os nós da árvore
 class Node():
+    # construtor: determina as variáveis iniciais do nó
     def __init__(self, symbol, depth):
         self.symbol = symbol
         if (symbol == '+' or symbol == '*'):
@@ -30,9 +37,13 @@ class Node():
         else:
             self.type = Types.CONSTANT
         self.depth = depth
+
+    # adiciona dois filhos ao nó da árvore
     def add_branches(self, symbol1, symbol2):
         self.branches.append(Node(symbol1, self.depth+1))
         self.branches.append(Node(symbol2, self.depth+1))
+
+    # extende uma árvore recursivamente
     def extend(self):
         if self.type == Types.OPERATOR:
             if self.depth == 5:
@@ -45,6 +56,16 @@ class Node():
             for i in range(2):
                 self.branches[i].extend()
 
+    def get_value(self):
+        return self.symbol
+
+    def get_type(self):
+        return self.type
+
+    def get_result(var_values):
+        pass
+
+# gera a população inicial de indivíduos
 def generate_initial_population():
     ret = []
     for i in range(POPULATION):
@@ -61,8 +82,6 @@ def main():
     print(Types.OPERATOR)
     print("main")
     train_data = Data(TRAINING_FILE_NAME)
-
-    # gera populacao inicial
     ppl = generate_initial_population()
 
     # loop de execução do GP
