@@ -33,11 +33,24 @@ class Node():
     def add_branches(self, symbol1, symbol2):
         self.branches.append(Node(symbol1, self.depth+1))
         self.branches.append(Node(symbol2, self.depth+1))
+    def extend(self):
+        if self.type == Types.OPERATOR:
+            if self.depth == 5:
+                symbol1 = random.choice("abcdefgh")
+                symbol2 = random.choice("abcdefgh")
+            else:
+                symbol1 = random.choice("abcdefgh+*")
+                symbol2 = random.choice("abcdefgh+*")
+            self.add_branches(symbol1, symbol2)
+            for i in range(2):
+                self.branches[i].extend()
 
 def generate_initial_population():
     ret = []
     for i in range(POPULATION):
         symbol = random.choice("abcdefgh+*")
+        ret.append(Node(symbol, 0))
+        ret[i].extend()
     return ret
 
 def main():
@@ -51,6 +64,8 @@ def main():
 
     # gera populacao inicial
     ppl = generate_initial_population()
+
+    # loop de execução do GP
 
 if __name__ == '__main__':
     main()
