@@ -32,7 +32,7 @@ class Node():
         if (symbol == '+' or symbol == '*'):
             self.type = Types.OPERATOR
             self.branches = []
-        elif('a' <= symbol and symbol <= 'h'):
+        elif(type(symbol) is str):
             self.type = Types.VARIABLE
         else:
             self.type = Types.CONSTANT
@@ -47,39 +47,63 @@ class Node():
     def extend(self):
         if self.type == Types.OPERATOR:
             if self.depth == 5:
-                symbol1 = random.choice("abcdefgh")
-                symbol2 = random.choice("abcdefgh")
+                symbol1 = generate_symbol(False)
+                symbol2 = generate_symbol(False)
             else:
-                symbol1 = random.choice("abcdefgh+*")
-                symbol2 = random.choice("abcdefgh+*")
+                symbol1 = generate_symbol(True)
+                symbol2 = generate_symbol(True)
             self.add_branches(symbol1, symbol2)
             for i in range(2):
                 self.branches[i].extend()
 
-    def get_value(self):
-        return self.symbol
+    # encontra o resultado da funçao na árvore aplicada as variaveis
+    def get_result(self, var_values):
+        c_type = self.type
+        c_value = self.value
+        if c_type == Types.OPERATOR:
+            if c_value == '+':
+                return get_result(self.branches[0]) + get_result(self.branches[1])
+            else:
+                return get_result(self.branches[0]) * get_result(self.branches[1])
+        elif c_type == Types.CONSTANT:
+            return c_value
+        else:
+            return var_values[ord(c_value)-97]
 
-    def get_type(self):
-        return self.type
-
-    def get_result(var_values):
-        pass
+# gera um símbolo aleatório
+def generate_symbol(operators_allowed:bool):
+    if operators_allowed:
+        typ = random.choice([0, 1, 2])
+        if typ == 0:
+            return random.choice("abcdefgh")
+        elif typ == 1:
+            return random.uniform(-10.0, 10.0)
+        else:
+            return random.choice("+*")
+    else:
+        if random.choice([0, 1]) == 0:
+            return random.choice("abcdefgh")
+        else:
+            return random.uniform(-10.0, 10.0)
 
 # gera a população inicial de indivíduos
 def generate_initial_population():
     ret = []
     for i in range(POPULATION):
-        symbol = random.choice("abcdefgh+*")
+        symbol = generate_symbol(True)
         ret.append(Node(symbol, 0))
         ret[i].extend()
     return ret
+
+#####################################
+### MAIN ############################
+#####################################
 
 def main():
     if len(sys.argv) != 4:
         print("usage: python3 main.py <training file> <test file> <population size>")
         sys.exit()
 
-    print(Types.OPERATOR)
     print("main")
     train_data = Data(TRAINING_FILE_NAME)
     ppl = generate_initial_population()
