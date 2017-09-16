@@ -2,6 +2,10 @@ import sys
 import random
 import csv
 
+TRAINING_FILE_NAME = sys.argv[1]
+TEST_FILE_NAME = sys.argv[2]
+POPULATION = int(sys.argv[3])
+
 class Types:
     OPERATOR = 1
     CONSTANT = 2
@@ -16,32 +20,34 @@ class Data():
         return self.details[row][col]
 
 class Node():
-    def __init__(self, symbol):
+    def __init__(self, symbol, depth):
         self.symbol = symbol
-        if (symbol == '+' or symbol == '-'):
+        if (symbol == '+' or symbol == '*'):
             self.type = Types.OPERATOR
             self.branches = []
         elif('a' <= symbol and symbol <= 'h'):
             self.type = Types.VARIABLE
         else:
             self.type = Types.CONSTANT
+        self.depth = depth
     def add_branches(self, symbol1, symbol2):
-        self.branches.append(Node(symbol1))
-        self.branches.append(Node(symbol2))
+        self.branches.append(Node(symbol1, self.depth+1))
+        self.branches.append(Node(symbol2, self.depth+1))
 
 def generate_initial_population():
     ret = []
-    # gerar populacao inicial aleatoriamente
+    for i in range(POPULATION):
+        symbol = random.choice("abcdefgh+*")
     return ret
 
 def main():
-    if len(sys.argv) != 2:
-        print("usage: python3 main.py <csv test file>")
+    if len(sys.argv) != 4:
+        print("usage: python3 main.py <training file> <test file> <population size>")
         sys.exit()
 
     print(Types.OPERATOR)
     print("main")
-    train_data = Data(sys.argv[1])
+    train_data = Data(TRAINING_FILE_NAME)
 
     # gera populacao inicial
     ppl = generate_initial_population()
