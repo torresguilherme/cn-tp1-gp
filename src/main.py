@@ -70,10 +70,20 @@ class Node():
         else:
             return var_values[ord(c_value)-97]
 
+    # imprime o conteudo de um nó da arvore
+    def print_node(self):
+        if self.type == Types.OPERATOR:
+            self.branches[0].print_node()
+            print(self.symbol)
+            self.branches[1].print_node()
+        else:
+            print(self.symbol)
+            
+
 # gera um símbolo aleatório
 def generate_symbol(operators_allowed:bool):
     if operators_allowed:
-        typ = random.choice([0, 1, 2])
+        typ = random.choice([0, 1, 2, 3])
         if typ == 0:
             return random.choice("abcdefgh")
         elif typ == 1:
@@ -107,6 +117,7 @@ def main():
     print("main")
     train_data = Data(TRAINING_FILE_NAME)
     ppl = generate_initial_population()
+    ppl[0].print_node()
 
     # loop de execução do GP
 
