@@ -5,6 +5,9 @@ import csv
 TRAINING_FILE_NAME = sys.argv[1]
 TEST_FILE_NAME = sys.argv[2]
 POPULATION = int(sys.argv[3])
+GENERATIONS = int(sys.argv[4])
+PROB_CROSSOVER = float(sys.argv[5])
+PROB_MUTATION = float(sys.argv[6])
 
 # classe Types -> guarda ints para representar o tipo do nó
 class Types:
@@ -79,7 +82,6 @@ class Node():
         else:
             print(self.symbol)
             
-
 # gera um símbolo aleatório
 def generate_symbol(operators_allowed:bool):
     if operators_allowed:
@@ -108,10 +110,8 @@ def generate_initial_population():
 #####################################
 ### MAIN ############################
 #####################################
-
 def main():
-    if len(sys.argv) != 4:
-        print("usage: python3 main.py <training file> <test file> <population size>")
+    if len(sys.argv) != 7:
         sys.exit()
 
     print("main")
