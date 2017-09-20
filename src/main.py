@@ -1,3 +1,4 @@
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 import sys
 import random
 import csv
@@ -8,6 +9,7 @@ POPULATION = int(sys.argv[3])
 GENERATIONS = int(sys.argv[4])
 PROB_CROSSOVER = float(sys.argv[5])
 PROB_MUTATION = float(sys.argv[6])
+TOURNAMENT = int(sys.argv[7])
 
 # classe Types -> guarda ints para representar o tipo do nó
 class Types:
@@ -66,7 +68,7 @@ class Node():
         if c_type == Types.OPERATOR:
             if c_value == '+':
                 return get_result(self.branches[0]) + get_result(self.branches[1])
-            else:
+            elif c_value == '*':
                 return get_result(self.branches[0]) * get_result(self.branches[1])
         elif c_type == Types.CONSTANT:
             return c_value
@@ -102,16 +104,28 @@ def generate_symbol(operators_allowed:bool):
 def generate_initial_population():
     ret = []
     for i in range(POPULATION):
-        symbol = generate_symbol(True)
+        symbol = random.choice("+*")
         ret.append(Node(symbol, 0))
         ret[i].extend()
     return ret
 
 #####################################
+### MÉTODOS DO GP ###################
+#####################################
+
+# TO DO:
+# análise de fitness: compara a diferença entre o resultado da função e o último número no vetor da csv, retornando a fitness
+# torneio: parametro = sys.argv[7] indivíduos aleatórios, retorna o que tem a fitness mais alta
+# cruzamento: faz dois torneiros, seleciona os pais, se der dentro da probabilidade de cruzamento, gera 2 filhos
+# ESTRATÉGIA MAIS SIMPLES: troca duas folhas
+# aplica a probabilidade de mutação aos filhos
+# MUTAÇÂO: escolhe um ponto aleatório da árvore, deleta os branches a partir dele e re-extende a árvore até o final
+
+#####################################
 ### MAIN ############################
 #####################################
 def main():
-    if len(sys.argv) != 7:
+    if len(sys.argv) != 8:
         sys.exit()
 
     print("main")
@@ -119,7 +133,10 @@ def main():
     ppl = generate_initial_population()
     ppl[0].print_node()
 
-    # loop de execução do GP
+    # loop de execução do GP:
+# - faz a seleção até gerar $tamanho_da_população filhos
+# ordena
+# imprime a fitness do melhor indivíduo, do pior e tira a média
 
 if __name__ == '__main__':
     main()
