@@ -148,17 +148,16 @@ def main():
         variables.append(chr(i+97))
     ppl = generate_initial_population()
 
-    #teste = Node('+', 0)
-    #teste.add_branches('*', '+')
-    #teste.branches[0].add_branches('d', 'g')
-    #teste.branches[1].add_branches('c', 'e')
-    #ppl[0].print_node()
-    print(ppl[0].get_fitness(train_data))
-
     # loop de execução do GP:
 # - faz a seleção até gerar $tamanho_da_população filhos
 # ordena
 # imprime a fitness do melhor indivíduo, do pior e tira a média
+    for count in range(GENERATIONS):
+        new_ppl = []
+        while len(new_ppl) < POPULATION:
+            parent1 = tournament(random.sample(ppl, TOURNAMENT)))
+            parent2 = tournament(random.sample(ppl, TOURNAMENT)))
+            new_ppl.extend(crossover(parent1, parent2))
 
 if __name__ == '__main__':
     main()
