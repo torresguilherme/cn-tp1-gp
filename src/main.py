@@ -1,4 +1,3 @@
-# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 import sys
 import random
 import csv
@@ -154,7 +153,7 @@ def main():
     #teste.branches[0].add_branches('d', 'g')
     #teste.branches[1].add_branches('c', 'e')
     #ppl[0].print_node()
-    #print(ppl[0].get_fitness(train_data))
+    print(ppl[0].get_fitness(train_data))
 
     # loop de execução do GP:
 # - faz a seleção até gerar $tamanho_da_população filhos
