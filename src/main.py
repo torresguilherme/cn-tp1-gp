@@ -40,7 +40,10 @@ class Data():
     def get_lenght(self):
         return len(self.details)
 
-# classe Node -> representa os nós da árvore
+#####################################
+### NODE (INDIVIDUO) ################
+#####################################
+
 class Node():
     # construtor: determina as variáveis iniciais do nó
     def __init__(self, symbol, depth):
@@ -93,13 +96,22 @@ class Node():
         accum = sqrt(accum/len(data))
         return accum
 
+    def choose_random_leaf(self):
+        if self.type == Types.OPERATOR:
+            return self.branches(random.choice[0, 1])
+        else:
+            return self # ?
+
     def print_node(self):
         print(self.symbol)
         if self.type == Types.OPERATOR:
             self.branches[0].print_node()
             self.branches[1].print_node()
             
-# gera um símbolo aleatório
+#####################################
+### GERACAO ALEATORIA DE INDIVIDUOS #
+#####################################
+
 def generate_symbol(operators_allowed:bool):
     if operators_allowed:
         typ = random.choice([0, 1, 2, 3])
@@ -115,7 +127,6 @@ def generate_symbol(operators_allowed:bool):
         else:
             return random.uniform(-10.0, 10.0)
 
-# gera a população inicial de indivíduos
 def generate_initial_population():
     ret = []
     for i in range(POPULATION):
@@ -129,8 +140,23 @@ def generate_initial_population():
 #####################################
 
 # TO DO:
-# torneio: parametro = sys.argv[7] indivíduos aleatórios, retorna o que tem a fitness mais alta
-# cruzamento: faz dois torneiros, seleciona os pais, se der dentro da probabilidade de cruzamento, gera 2 filhos
+def tournament(sample, train_data):
+    best = Node(0, 0)
+    best_fitness = sys.maxint
+    for it in sample:
+        current = it.get_fitness(train_data)
+        if current < best_fitness:
+            best_fitness = current
+            best = it
+    return best
+
+def crossover(parent1, parent2):
+    ret = []
+    if random.uniform(0.0, 1.0) <= PROB_CROSSOVER:
+        # cruza
+        if random.uniform(0.0, 1.0) <= PROB_MUTATION:
+            # mutacao
+
 # ESTRATÉGIA MAIS SIMPLES: troca duas folhas
 # aplica a probabilidade de mutação aos filhos
 # MUTAÇÂO: escolhe um ponto aleatório da árvore, deleta os branches a partir dele e re-extende a árvore até o final
@@ -138,6 +164,7 @@ def generate_initial_population():
 #####################################
 ### MAIN ############################
 #####################################
+
 def main():
     if len(sys.argv) != 8:
         sys.exit()
@@ -148,16 +175,34 @@ def main():
         variables.append(chr(i+97))
     ppl = generate_initial_population()
 
-    # loop de execução do GP:
-# - faz a seleção até gerar $tamanho_da_população filhos
-# ordena
-# imprime a fitness do melhor indivíduo, do pior e tira a média
     for count in range(GENERATIONS):
         new_ppl = []
+        accum = 0
+        best = sys.maxint
+        best_node = Node(0, 0)
+        worst = 0
+
+        for it in ppl:
+            fitness = it.get_fitness(train_data)
+            accum += fitness
+            if fitness < best:
+                best = fitness
+                best_node = it
+            if fitness > worst:
+                worst = fitness
+
+        new_ppl.append(best_node)
+        print("--Iteração número %i--" % count)
+        print("Melhor fitness: %f" % best)
+        print("Pior fitness: %f" % worst)
+        print("Média geral: %f" % accum/POPULATION)
+
         while len(new_ppl) < POPULATION:
-            parent1 = tournament(random.sample(ppl, TOURNAMENT)))
-            parent2 = tournament(random.sample(ppl, TOURNAMENT)))
-            new_ppl.extend(crossover(parent1, parent2))
+            parent1 = tournament(random.sample(ppl, TOURNAMENT), train_data)
+            parent2 = tournament(random.sample(ppl, TOURNAMENT), train_data)
+            new_ppl = new_ppl + crossover(parent1, parent2)
+
+        ppl = new_ppl
 
 if __name__ == '__main__':
     main()
