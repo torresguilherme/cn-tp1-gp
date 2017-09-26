@@ -50,7 +50,6 @@ class Node():
         self.symbol = symbol
         if (symbol == '+' or symbol == '*' or symbol == '/'):
             self.type = Types.OPERATOR
-            self.branches = []
         elif(type(symbol) is str):
             self.type = Types.VARIABLE
         else:
@@ -63,6 +62,7 @@ class Node():
 
     def extend(self):
         if self.type == Types.OPERATOR:
+            self.branches = []
             if self.depth == 5:
                 symbol1 = generate_symbol(False)
                 symbol2 = generate_symbol(False)
@@ -82,7 +82,7 @@ class Node():
             elif c_value == '*':
                 return self.branches[0].get_result(var_values) * self.branches[1].get_result(var_values)
             else:
-                return safe_division(self.branches[0].get_result(var_values), self.branches[0].get_result(var_values))
+                return safe_division(self.branches[0].get_result(var_values), self.branches[1].get_result(var_values))
         elif c_type == Types.CONSTANT:
             return c_value
         else:
@@ -96,11 +96,34 @@ class Node():
         accum = sqrt(accum/len(data))
         return accum
 
+    def set_fitness(self, data_source):
+        self.fitness = self.get_fitness(data_source)
+
     def choose_random_leaf(self):
         if self.type == Types.OPERATOR:
-            return self.branches(random.choice[0, 1])
+            return self.branches[random.choice([0, 1])]
         else:
-            return self # ?
+            return self
+
+    def choose_random_node(self):
+        if self.type == Types.OPERATOR:
+            if random.choice([0, 1]) == 0:
+                return self.branches[random.choice([0, 1])]
+            else:
+                return self
+        else:
+            return self
+
+    def mutate(self):
+        node = self.choose_random_node()
+        node.symbol == generate_symbol(True)
+        if (node.symbol == '+' or node.symbol == '*' or node.symbol == '/'):
+            node.type = Types.OPERATOR
+        elif(type(node.symbol) is str):
+            node.type = Types.VARIABLE
+        else:
+            node.type = Types.CONSTANT
+        node.extend()
 
     def print_node(self):
         print(self.symbol)
@@ -127,63 +150,69 @@ def generate_symbol(operators_allowed:bool):
         else:
             return random.uniform(-10.0, 10.0)
 
-def generate_initial_population():
+def generate_initial_population(data_source):
     ret = []
     for i in range(POPULATION):
         symbol = random.choice("+*/")
         ret.append(Node(symbol, 0))
         ret[i].extend()
+        ret[i].set_fitness(data_source)
     return ret
 
 #####################################
 ### MÉTODOS DO GP ###################
 #####################################
 
-# TO DO:
-def tournament(sample, train_data):
+def tournament(sample):
     best = Node(0, 0)
-    best_fitness = sys.maxint
+    best_fitness = sys.maxsize
     for it in sample:
-        current = it.get_fitness(train_data)
+        current = it.fitness
         if current < best_fitness:
             best_fitness = current
             best = it
     return best
 
-def crossover(parent1, parent2):
+def crossover(parent1, parent2, data_source):
     ret = []
     if random.uniform(0.0, 1.0) <= PROB_CROSSOVER:
-        # cruza
+        leaf1 = parent1.choose_random_leaf()
+        leaf2 = parent2.choose_random_leaf()
+        leaf1, leaf2 = leaf2, leaf1
         if random.uniform(0.0, 1.0) <= PROB_MUTATION:
-            # mutacao
-
-# ESTRATÉGIA MAIS SIMPLES: troca duas folhas
-# aplica a probabilidade de mutação aos filhos
-# MUTAÇÂO: escolhe um ponto aleatório da árvore, deleta os branches a partir dele e re-extende a árvore até o final
+            leaf1.mutate()
+        if random.uniform(0.0, 1.0) <= PROB_MUTATION:
+            leaf2.mutate()
+        parent1.set_fitness(data_source)
+        parent2.set_fitness(data_source)
+        ret.append(parent1)
+        ret.append(parent2)
+    return ret
 
 #####################################
 ### MAIN ############################
 #####################################
 
 def main():
-    if len(sys.argv) != 8:
+    if len(sys.argv) < 8:
+        print("Erro: sem argumentos para os parametros")
         sys.exit()
 
     print("main")
     train_data = Data(TRAINING_FILE_NAME)
     for i in range(len(train_data.get_line(0))-1):
         variables.append(chr(i+97))
-    ppl = generate_initial_population()
+    ppl = generate_initial_population(train_data)
 
     for count in range(GENERATIONS):
         new_ppl = []
         accum = 0
-        best = sys.maxint
+        best = sys.maxsize
         best_node = Node(0, 0)
         worst = 0
 
         for it in ppl:
-            fitness = it.get_fitness(train_data)
+            fitness = it.fitness
             accum += fitness
             if fitness < best:
                 best = fitness
@@ -192,15 +221,15 @@ def main():
                 worst = fitness
 
         new_ppl.append(best_node)
-        print("--Iteração número %i--" % count)
+        print("-- Iteração número %i --" % count)
         print("Melhor fitness: %f" % best)
         print("Pior fitness: %f" % worst)
-        print("Média geral: %f" % accum/POPULATION)
+        print("Média geral:",  (accum/len(ppl)))
 
         while len(new_ppl) < POPULATION:
-            parent1 = tournament(random.sample(ppl, TOURNAMENT), train_data)
-            parent2 = tournament(random.sample(ppl, TOURNAMENT), train_data)
-            new_ppl = new_ppl + crossover(parent1, parent2)
+            parent1 = tournament(random.sample(ppl, TOURNAMENT))
+            parent2 = tournament(random.sample(ppl, TOURNAMENT))
+            new_ppl.extend(crossover(parent1, parent2, train_data))
 
         ppl = new_ppl
 
