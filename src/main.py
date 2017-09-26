@@ -202,6 +202,7 @@ def main():
         sys.exit()
 
     train_data = Data(TRAINING_FILE_NAME)
+    test_data = Data(TEST_FILE_NAME)
     for i in range(len(train_data.get_line(0))-1):
         variables.append(chr(i+97))
     ppl = generate_initial_population(train_data)
@@ -222,10 +223,10 @@ def main():
                 worst = it.fitness
 
         new_ppl.append(best_node)
-        print("-- Iteração número %i --" % count)
-        print("Melhor fitness: %f" % best)
-        print("Pior fitness: %f" % worst)
-        print("Média geral:",  (accum/len(ppl)))
+        print(count)
+        print(best)
+        print(worst)
+        print(accum/len(ppl))
 
         while len(new_ppl) < POPULATION:
             parent1 = tournament(random.sample(ppl, TOURNAMENT))
@@ -234,5 +235,23 @@ def main():
 
         ppl = new_ppl
 
+    best = sys.maxsize
+    worst = 0
+    for it in ppl:
+        fitness = it.get_fitness(test_data)
+        if fitness < best:
+            best = fitness
+        if fitness > worst:
+            worst = it.fitness
+    return best
+
 if __name__ == '__main__':
-    main()
+    data = []
+    average = 0
+    for i in range(30):
+        experiment = main()
+        data.append(experiment)
+        average += experiment
+    average /= 30
+    print("final")
+    print(average)
