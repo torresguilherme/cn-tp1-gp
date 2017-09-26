@@ -1,6 +1,7 @@
 import sys
 import random
 import csv
+import copy
 from math import sqrt
 
 TRAINING_FILE_NAME = sys.argv[1]
@@ -176,17 +177,19 @@ def tournament(sample):
 def crossover(parent1, parent2, data_source):
     ret = []
     if random.uniform(0.0, 1.0) <= PROB_CROSSOVER:
-        leaf1 = parent1.choose_random_leaf()
-        leaf2 = parent2.choose_random_leaf()
+        desc1 = copy.deepcopy(parent1)
+        desc2 = copy.deepcopy(parent2)
+        leaf1 = desc1.choose_random_leaf()
+        leaf2 = desc2.choose_random_leaf()
         leaf1, leaf2 = leaf2, leaf1
         if random.uniform(0.0, 1.0) <= PROB_MUTATION:
             leaf1.mutate()
         if random.uniform(0.0, 1.0) <= PROB_MUTATION:
             leaf2.mutate()
-        parent1.set_fitness(data_source)
-        parent2.set_fitness(data_source)
-        ret.append(parent1)
-        ret.append(parent2)
+        desc1.set_fitness(data_source)
+        desc2.set_fitness(data_source)
+        ret.append(desc1)
+        ret.append(desc2)
     return ret
 
 #####################################
@@ -198,7 +201,6 @@ def main():
         print("Erro: sem argumentos para os parametros")
         sys.exit()
 
-    print("main")
     train_data = Data(TRAINING_FILE_NAME)
     for i in range(len(train_data.get_line(0))-1):
         variables.append(chr(i+97))
@@ -212,13 +214,12 @@ def main():
         worst = 0
 
         for it in ppl:
-            fitness = it.fitness
-            accum += fitness
-            if fitness < best:
-                best = fitness
+            accum += it.fitness
+            if it.fitness < best:
+                best = it.fitness
                 best_node = it
-            if fitness > worst:
-                worst = fitness
+            if it.fitness > worst:
+                worst = it.fitness
 
         new_ppl.append(best_node)
         print("-- Iteração número %i --" % count)
