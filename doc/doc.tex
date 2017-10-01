@@ -27,4 +27,44 @@ O algoritmo foi implementado em Python 3, na pasta /src. Instruções para execu
 
 O funcionamento do algoritmo pode ser descrito, no plano geral, pelos seguintes passos:
 
+Como é sugerido, há muitas variáveis envolvidas e deve-se encontrar o valor ótimo para elas por meio de experimentos.
+
+\subsection{Decisões de implementação}
+
+\subsection*{Indivíduo}
+
+Um indivíduo é representado por uma árvore, que tem um valor de uma função. Cada uma das folhas da árvore faz o papel de uma constante ou uma variável. As constantes são geradas aleatoriamente com números de ponto flutuante entre -10 e 10 (distribuição uniforme).
+
+Os operadores escolhidos foram '+', '*' e '/', respectivamente, para adição, multiplicação e divisão. Como a subtração é praticamente uma adição por um número negativo, não foi necessário adicionar um operador '-'. 
+
+\subsection*{Geração aleatória de indivíduos}
+
+Cada indivíduo começa com um operador a priori, e sua árvore é estendida até que todos os caminhos acabem em um terminal. Como a profundidade máxima do indivídio é 7, apenas terminais serão escolhidos aleatoriamente quando algum nó chegar na profundidade 6.
+
+\subsection*{Seleção natural}
+
+A seleção é realizada por torneiro. Dado um tamanho de torneio $T$, uma amostra de tamanho $T$ é selecionada também de forma aleatória entre os indivíduos e o vencedor é o que tiver a melhor fitness, no caso, o menor erro quadrático. 
+
+A variável $T$ é o principal fator que define a intensidade da pressão seletiva na população. Quanto maior esse número é, mais difícil é a permanência de indivíduos com fitness pior do que a média na população. Por isso, o valor adequado para esse parâmetro também foi definido através de experimentos, dentro de um intervalo de valores.
+
+\subsection*{Cruzamento}
+
+O cruzamento também faz parte da seleção natural. Ele ocorre para definir a nova geração a ser avaliada no GP. Dados dois indivíduo que venceram seus respectivos torneios, a probabilidade de ocorrer um cruzamento entre eles subsequentemente é de $p_c$ (entre 60\% e 90\%).
+
+Uma das principais questões do cruzamento é a possibilidade de se manter a localidade ao cruzar duas árvores (se uma grande parte das árvores for cruzada, a variabilidade gerada pode levar a um indivíduo completamente diferente dos dois pais, o que aumenta drasticamente a aleatoriedade da busca).
+
+Para evitar que um crossover provoque uma variedade maior do que deveria e destrua bons indivíduos, o modelo de crossover adotado é o citado por (insira autor) como o método mais simples, que é a troca de duas folhas aleatoriamente escolhidas entre os pais.
+
+\subsection*{Mutação}
+
+Como o cruzamento é escolhido de forma bem conservadora, é papel da mutação provocar uma variabiidade mais drástica e promover a diversidade entre a população. A estratégia usada também é citada por (insira autor), e consiste em escolher um nó aleatório da árvore, podar os seus filhos e re-extender a árvore aleatoriamente a partir desse ponto.
+
+Para cada indivíduo que surge de um cruzamento, a chance de ele sofrer uma mutação é $p_m$ (entre 5\% e 30\%).
+
+\subsection*{Elitismo}
+
+Passar um pequeno grupo dos melhores indivíduos da população atual para a próxima geração sem submetê-los ao processo de seleção é um processo muito utilizado para fazer algoritmos convergir mais rápido e preservar bons genótipos. O elitismo é adotado neste projeto também.
+
+Como o número de indivíduos da população é relativamente pequeno, fixo em 50, julgou-se razoável manter o tamanho do grupo elitista em apenas um, para que a pressão seletiva não fosse desproporcional e assim, evitando que todos os indivíduos ficassem iguais antes do número de iterações desejado.
+
 \end{document}
