@@ -1,15 +1,30 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{amssymb}
 \usepackage{array}
 
 \begin{document}
 
 \title{Computação Natural - TP1 - Programação Genética}
 \author{Guilherme Torres (Departamento de Ciência da Computação - UFMG)}
-\date{\today}
+\date{}
 \maketitle
 
-\section{Introdução e fundamentação}
+\section{Introdução}
+
+O objetivo deste trabalho foi formular e escolher os melhores parâmetros para um algoritmo de aprendizado para regressão simbólica. Dada uma função $f: \mathbb{R}^n \to \mathbb{R}$, a regressão simbólica consiste em tentar aproximar essa função usando uma árvore constituída por terminais nas folhas (constantes ou variáveis) e operadores.
+
+A heurística usada foi a programação genética, que usa de conceitos evolucionários para evoluir as soluções para o problema e obter indivíduos mais adaptados. É um algoritmo estocástico, ou seja, com vários componentes de aleatoriedade como geração inicial dos indivíduos e mutações, o que requer que muitos experimentos sejam realizados para tirar as conclusões sobre o trabalho, que serão discutidos nesse documento.
+
+O algoritmo foi implementado em Python 3, na pasta /src. Instruções para executar o teste estão explicitadas no arquivo README.md. O programa também pode ser encontrado no repositório:
+
+\texttt{https://github.com/torresguilherme/cn-tp1-gp}.
+
+\section{Implementação}
+
+\subsection{Fundamentação}
+
+O funcionamento do algoritmo pode ser descrito, no plano geral, pelos seguintes passos:
 
 \end{document}
