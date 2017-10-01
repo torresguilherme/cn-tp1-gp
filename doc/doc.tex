@@ -14,7 +14,7 @@
 \section{Introdução}
 
 O objetivo deste trabalho foi formular e escolher os melhores parâmetros para um algoritmo de aprendizado para regressão simbólica. Dada uma função $f: \mathbb{R}^n \to \mathbb{R}$, a regressão simbólica consiste em tentar aproximar essa função usando uma árvore constituída por terminais nas folhas (constantes ou variáveis) e operadores.
-
+	
 A heurística usada foi a programação genética, que usa de conceitos evolucionários para evoluir as soluções para o problema e obter indivíduos mais adaptados. É um algoritmo estocástico, ou seja, com vários componentes de aleatoriedade como geração inicial dos indivíduos e mutações, o que requer que muitos experimentos sejam realizados para tirar as conclusões sobre o trabalho, que serão discutidos nesse documento.
 
 O algoritmo foi implementado em Python 3, na pasta /src. Instruções para executar o teste estão explicitadas no arquivo README.md. O programa também pode ser encontrado no repositório:
@@ -26,6 +26,14 @@ O algoritmo foi implementado em Python 3, na pasta /src. Instruções para execu
 \subsection{Fundamentação}
 
 O funcionamento do algoritmo pode ser descrito, no plano geral, pelos seguintes passos:
+
+\begin{enumerate}
+
+\item Geração aleatória dos primeiros indivíduos.
+
+\item 
+
+\end{enumerate}
 
 Como é sugerido, há muitas variáveis envolvidas e deve-se encontrar o valor ótimo para elas por meio de experimentos.
 
@@ -51,7 +59,7 @@ A variável $T$ é o principal fator que define a intensidade da pressão seleti
 
 O cruzamento também faz parte da seleção natural. Ele ocorre para definir a nova geração a ser avaliada no GP. Dados dois indivíduo que venceram seus respectivos torneios, a probabilidade de ocorrer um cruzamento entre eles subsequentemente é de $p_c$ (entre 60\% e 90\%).
 
-Uma das principais questões do cruzamento é a possibilidade de se manter a localidade ao cruzar duas árvores (se uma grande parte das árvores for cruzada, a variabilidade gerada pode levar a um indivíduo completamente diferente dos dois pais, o que aumenta drasticamente a aleatoriedade da busca).
+Uma das principais questões do cruzamento é a possibilidade de se manter a localidade ao cruzar duas árvores (se 	uma grande parte das árvores for cruzada, a variabilidade gerada pode levar a um indivíduo completamente diferente dos dois pais, o que aumenta drasticamente a aleatoriedade da busca).
 
 Para evitar que um crossover provoque uma variedade maior do que deveria e destrua bons indivíduos, o modelo de crossover adotado é o citado por (insira autor) como o método mais simples, que é a troca de duas folhas aleatoriamente escolhidas entre os pais.
 

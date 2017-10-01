@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.30)  1 OCT 2017 12:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.30)  1 OCT 2017 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -407,7 +407,7 @@ Overfull \hbox (8.59589pt too wide) in paragraph at lines 28--29
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (2.55583pt too wide) in paragraph at lines 38--39
+Overfull \hbox (2.55583pt too wide) in paragraph at lines 46--47
 []\T1/cmr/m/n/10.95 Os op-er-adores es-col-hi-dos foram '+', '*' e '/', re-spec
 -ti-va-mente, para adição,
  []
@@ -433,7 +433,7 @@ ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/symbols/msbm10.pfb>
-Output written on doc.pdf (3 pages, 101178 bytes).
+Output written on doc.pdf (3 pages, 101239 bytes).
 PDF statistics:
  258 PDF objects out of 1000 (max. 8388607)
  47 compressed objects within 1 object stream
