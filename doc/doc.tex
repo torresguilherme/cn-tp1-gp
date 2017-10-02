@@ -75,9 +75,17 @@ Os operadores escolhidos foram '+', '*' e '/', respectivamente, para adição, m
 
 Cada indivíduo começa com um operador a priori, e sua árvore é estendida até que todos os caminhos acabem em um terminal. Como a profundidade máxima do indivídio é 7, apenas terminais serão escolhidos aleatoriamente quando algum nó chegar na profundidade 6.
 
-\subsection{Cálculo da Fitness}
+\subsection*{Cálculo da Fitness}
 
-A fitness de um indivíduo é dada pelo seu erro quadrático em relação ao resultado dado para um conjunto de variáveis da função que se quer aprender. 
+A fitness de um indivíduo é dada pelo seu erro quadrático em relação ao resultado dado para um conjunto de variáveis da função que se quer aprender. O erro de um indivíduo é obtido por $$\sqrt{1/N\sum\limits_{i=0}^{n-1} (Ev_i - y_i)^2}$$ sendo N o número de avaliações dadas no arquivo de teste, $Ev_i$ a avaliação de um indivíduo para cada conjunto de variáveis, $y_i$ o valor real dado no arquivo para aquele conjunto.
+
+Como a fitness é uma medida de erro, quanto menor o erro, melhor é o indivíduo.
+
+\subsection*{Tamanho da população e número de gerações}
+
+O tamanho da população para um algoritmo de programação genética é tipicamente menor do que para um algoritmo genético, onde o objetivo é achar uma solução para um problema em vez de desenvolver um método para ele.
+
+É razoável que a população varie, neste caso, entre 50 e 500. Por motivos de limitações em questão de tempo e recursos computacionais, o tamanho da população foi fixado em 50, assim como o número de gerações. Sabendo disso, é provável que seja necessária uma taxa de mutações e cruzamento maior para obter-se mais diversidade na população reduzida.
 
 \subsection*{Seleção natural}
 
@@ -91,11 +99,11 @@ O cruzamento também faz parte da seleção natural. Ele ocorre para definir a n
 
 Uma das principais questões do cruzamento é a possibilidade de se manter a localidade ao cruzar duas árvores (se 	uma grande parte das árvores for cruzada, a variabilidade gerada pode levar a um indivíduo completamente diferente dos dois pais, o que aumenta drasticamente a aleatoriedade da busca).
 
-Para evitar que um crossover provoque uma variedade maior do que deveria e destrua bons indivíduos, o modelo de crossover adotado é o citado por (insira autor) como o método mais simples, que é a troca de duas folhas aleatoriamente escolhidas entre os pais.
+Para evitar que um crossover provoque uma variedade maior do que deveria e destrua bons indivíduos, o modelo de crossover adotado é um método mais simples, porém ainda amplamente usado [1], que é a troca de duas folhas aleatoriamente escolhidas entre os pais.
 
 \subsection*{Mutação}
 
-Como o cruzamento é escolhido de forma bem conservadora, é papel da mutação provocar uma variabiidade mais drástica e promover a diversidade entre a população. A estratégia usada também é citada por (insira autor), e consiste em escolher um nó aleatório da árvore, podar os seus filhos e re-extender a árvore aleatoriamente a partir desse ponto.
+Como o cruzamento é escolhido de forma bem conservadora, é papel da mutação provocar uma variabiidade mais drástica e promover a diversidade entre a população. A estratégia usada consiste em escolher um nó aleatório da árvore, podar os seus filhos e re-extender a árvore aleatoriamente a partir desse ponto [1].
 
 Para cada indivíduo que surge de um cruzamento, a chance de ele sofrer uma mutação é $p_m$ (entre 5\% e 30\%).
 
@@ -103,12 +111,16 @@ Para cada indivíduo que surge de um cruzamento, a chance de ele sofrer uma muta
 
 Passar um pequeno grupo dos melhores indivíduos da população atual para a próxima geração sem submetê-los ao processo de seleção é um processo muito utilizado para fazer algoritmos convergir mais rápido e preservar bons genótipos. O elitismo é adotado neste projeto também.
 
-Como o número de indivíduos da população é relativamente pequeno, fixo em 50, julgou-se razoável manter o tamanho do grupo elitista em apenas um, para que a pressão seletiva não fosse desproporcional e assim, evitando que todos os indivíduos ficassem iguais antes do número de iterações desejado.
+Como o número de indivíduos da população é relativamente pequeno, julgou-se razoável manter o tamanho do grupo elitista em apenas um, para que a pressão seletiva não fosse desproporcional e assim, evitando que todos os indivíduos ficassem iguais antes do número de iterações desejado.
 
 \section{Experimentos}
 
 \section{Conclusões}
 
 \section{Referências}
+
+\begin{enumerate}
+	\item \textit{A Field Guide To Genetic Programming.} - Riccardo Poli, William B. Langdon, and Nicholas F. McPhee, 2008
+\end{enumerate}
 
 \end{document}
