@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.30)  2 OCT 2017 14:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.8.22)  2 OCT 2017 19:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -386,6 +386,10 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \NC@list=\toks17
 \extratabsurround=\skip43
 \backup@length=\skip44
+)
+(/usr/share/texlive/texmf-dist/tex/latex/filecontents/filecontents.sty
+Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaT
+eX document
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
@@ -849,18 +853,18 @@ LaTeX Warning: Label `fig:data' multiply defined.
 )
 \openout1 = `doc.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count119
@@ -927,21 +931,21 @@ ABD: EveryShipout initializing macros
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.14} (current compat level: 1.9).
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
+LaTeX Font Info:    Try loading font information for U+msa on input line 21.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 30.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Overfull \hbox (8.59589pt too wide) in paragraph at lines 36--37
+Overfull \hbox (8.59589pt too wide) in paragraph at lines 37--38
 \T1/cmr/m/n/10.95 O fun-ciona-mento do al-go-ritmo pode ser de-scrito, no plano
  geral, pe-los seguintes
  []
@@ -949,7 +953,7 @@ Overfull \hbox (8.59589pt too wide) in paragraph at lines 36--37
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (2.55583pt too wide) in paragraph at lines 60--61
+Overfull \hbox (2.55583pt too wide) in paragraph at lines 62--63
 []\T1/cmr/m/n/10.95 Os op-er-adores es-col-hi-dos foram '+', '*' e '/', re-spec
 -ti-va-mente, para adição,
  []
@@ -963,12 +967,11 @@ PGFPlots: reading {data/k10/mutation/exp0.txt}
 PGFPlots: reading {data/k10/mutation/exp1.txt}
 PGFPlots: reading {data/k10/mutation/exp2.txt}
 PGFPlots: reading {data/k10/mutation/exp3.txt}
- [5]
 PGFPlots: reading {data/k7/mutation/exp0.txt}
 PGFPlots: reading {data/k7/mutation/exp1.txt}
 PGFPlots: reading {data/k7/mutation/exp2.txt}
 PGFPlots: reading {data/k7/mutation/exp3.txt}
- [6]
+ [5] [6]
 PGFPlots: reading {data/house/crossover/mut0.3/exp0.txt}
 PGFPlots: reading {data/house/crossover/mut0.3/exp1.txt}
 PGFPlots: reading {data/house/crossover/mut0.3/exp2.txt}
@@ -981,7 +984,7 @@ PGFPlots: reading {data/k7/crossover/mut0.3/exp0.txt}
 PGFPlots: reading {data/k7/crossover/mut0.3/exp1.txt}
 PGFPlots: reading {data/k7/crossover/mut0.3/exp2.txt}
 PGFPlots: reading {data/k7/crossover/mut0.3/exp3.txt}
- [7]
+ [7] [8]
 PGFPlots: reading {data/house/tournament/exp0.txt}
 PGFPlots: reading {data/house/tournament/exp1.txt}
 PGFPlots: reading {data/house/tournament/exp2.txt}
@@ -994,16 +997,22 @@ PGFPlots: reading {data/k7/tournament/exp0.txt}
 PGFPlots: reading {data/k7/tournament/exp1.txt}
 PGFPlots: reading {data/k7/tournament/exp2.txt}
 PGFPlots: reading {data/k7/tournament/exp3.txt}
- [8] [9] [10] (./doc.aux)
+ [9] [10]
+Overfull \hbox (3.22253pt too wide) in paragraph at lines 286--287
+[]\T1/cmr/m/n/10.95 Sobre o teste \T1/cmr/m/it/10.95 house\T1/cmr/m/n/10.95 , c
+omo foi sug-erido na es-peci-fi-cação do tra-balho prático,
+ []
+
+[11] [12] (./doc.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 22951 strings out of 494902
- 599870 string characters out of 6179891
- 980402 words of memory out of 5000000
- 25835 multiletter control sequences out of 15000+600000
+ 22958 strings out of 494902
+ 600140 string characters out of 6179891
+ 982133 words of memory out of 5000000
+ 25839 multiletter control sequences out of 15000+600000
  15456 words of font info for 46 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  69i,11n,103p,718b,1890s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1022,10 +1031,10 @@ onts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on doc.pdf (10 pages, 271204 bytes).
+Output written on doc.pdf (12 pages, 282141 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
+ 371 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

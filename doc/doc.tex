@@ -4,6 +4,7 @@
 \usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{filecontents}
 \usepackage{pgfplotstable}
 \pgfplotstableset{
   empty cells with={---},
@@ -25,7 +26,7 @@ O objetivo deste trabalho foi formular e escolher os melhores parâmetros para u
 	
 A heurística usada foi a programação genética, que usa de conceitos evolucionários para evoluir as soluções para o problema e obter indivíduos mais adaptados. É um algoritmo estocástico, ou seja, com vários componentes de aleatoriedade como geração inicial dos indivíduos e mutações, o que requer que muitos experimentos sejam realizados para tirar as conclusões sobre o trabalho, que serão discutidos nesse documento.
 
-O algoritmo foi implementado em Python 3, na pasta /src. Instruções para executar o teste estão explicitadas no arquivo README.md. O programa também pode ser encontrado no repositório:
+O algoritmo foi implementado em Python 3, na pasta src/. Instruções para executar o teste estão explicitadas no arquivo README.md. O programa também pode ser encontrado no repositório:
 
 \texttt{https://github.com/torresguilherme/cn-tp1-gp}.
 
@@ -37,7 +38,7 @@ O funcionamento do algoritmo pode ser descrito, no plano geral, pelos seguintes 
 
 \begin{enumerate}
 	\item Geração aleatória dos primeiros indivíduos;
-	\item Mostra a melhor, pior e média das fitness na população;
+	\item Mostra a melhor, pior e média das fitness na população, usando os dados de treino;
 	\item Adiciona o grupo elitista à nova população;
 	\item Repete até que o número de indivíduos na população possa ser reposto:
 	\begin{enumerate}
@@ -46,7 +47,8 @@ O funcionamento do algoritmo pode ser descrito, no plano geral, pelos seguintes 
 		\item Ao se obter um cruzamento, aplica a chance de mutação;
 		\item Adiciona os filhos gerados à nova população;
 	\end{enumerate}
-	\item Repete desde o passo 2, até que o número máximo de gerações seja alcançado.
+	\item Repete desde o passo 2, até que o número máximo de gerações seja alcançado;
+	\item Avalia as soluções encontradas nos dados de teste e retorna o melhor valor.
 \end{enumerate}
 
 Como é sugerido, há muitas variáveis envolvidas e deve-se encontrar o valor ótimo para elas por meio de experimentos.
@@ -79,7 +81,7 @@ O tamanho da população para um algoritmo de programação genética é tipicam
 
 A seleção é realizada por torneiro. Dado um tamanho de torneio $T$, uma amostra de tamanho $T$ é selecionada também de forma aleatória entre os indivíduos e o vencedor é o que tiver a melhor fitness, no caso, o menor erro quadrático. 
 
-A variável $T$ é o principal fator que define a intensidade da pressão seletiva na população. Quanto maior esse número é, mais difícil é a permanência de indivíduos com fitness pior do que a média na população. Por isso, o valor adequado para esse parâmetro também foi definido através de experimentos, dentro de um intervalo de valores.
+A variável $T$ é o principal fator que define a intensidade da pressão seletiva na população. Quanto maior esse número é, mais difícil é a permanência de indivíduos com fitness pior do que a média na população. Por isso, o valor adequado para esse parâmetro também foi definido através de experimentos, entre 2 e 5.
 
 \subsection*{Cruzamento}
 
@@ -103,7 +105,7 @@ Como o número de indivíduos da população é relativamente pequeno, julgou-se
 
 \section{Experimentos}
 
-Os experimentos foram realizados em um desktop com sistema operacional Debian 9, Python 3.5.3, processador Pentium Dual Core (3.3 GHz) e 8GB de memória RAM. Foram usadas três bases de dados diferentes (house, keijzer-10 e keijzer-7, cada um com um arquivo de treino e teste, todos disponíveis na pasta \textit{/datasets}) Cada experimento foi repetido 30 vezes antes de se tirar as conclusões.
+Os experimentos foram realizados em um desktop com sistema operacional Debian 9, Python 3.5.3, processador Pentium Dual Core (3.3 GHz) e 8GB de memória RAM. Foram usadas três bases de dados diferentes (house, keijzer-10 e keijzer-7, cada um com um arquivo de treino e teste, todos disponíveis na pasta \textit{datasets/}) Cada experimento foi repetido 30 vezes.
 
 Os atributos do algoritmo foram testados na seguinte ordem:
 
@@ -113,11 +115,13 @@ Os atributos do algoritmo foram testados na seguinte ordem:
 	\item Variação de $T$ de 2 a 5
 \end{enumerate}
 
-Os gráficos plotados a seguir incluem a média aritmética dos dados dos experimentos obtidos para cada configuração, no \textit{arquivo de treino}. As tabelas apresentam a média dos melhores valores obtidos para a função, levando em consideração o \textit{arquivo de teste}.
+Os gráficos plotados a seguir incluem a média aritmética das melhores soluções obtidas para cada configuração, no \textit{arquivo de treino}, a cada geração. As tabelas em \textit{test-logs/best/} apresentam a média dos melhores valores obtidos para a função, para cada um dos experimentos, levando em consideração o \textit{arquivo de teste}.
+
+Mais detalhes sobre os experimentos podem ser encontrados nos logs na pasta \textit{test-logs/average/}. Lá estão tabelados, para cada variação, na média dos 30 experimentos, a fitness do melhor indivíduo, média das fitness de todos os indivíduos e a fitness do pior, respectivamente. Como a ordem de grandeza desses valores tem uma grande variação, principalmente no caso de teste \textit{house}, que possui erros maiores, não foi possível plotar esses dados de forma satisfatória.
 
 \subsection{Mutação}
 
-As figuras de 1 a 3 demonstram a média do erro das melhores soluções para os arquivos de teste nos experimentos realizados. No momento, os testes estão sendo realizados com $p_m = 0.05$ e $p_c = 0.9$. Os plots azul, vermelho, marrom e preto equivalem, respectivamente, às taxas de mutação de 0.05, 0.1, 0.15 e 0.2.
+As figuras de 1 a 3 demonstram a média do erro das melhores soluções para os arquivos de teste nos experimentos realizados. No momento, os testes estão sendo realizados com $p_m = 0.05$ e $p_c = 0.9$. Os plots azul, vermelho, marrom e preto correspondem, respectivamente, às taxas de mutação de 0.05, 0.1, 0.15 e 0.2.
 
 Os dados plotados dão uma boa ideia de como a solução converge. Podemos reparar que, como era esperado, valores maiores de mutação são os que promovem a diversidade necessária para que a convergência a longo prazo seja mais favorável. Este parece ser o caso para todos os conjuntos de dados.
 
@@ -165,7 +169,7 @@ Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, p
     \label{fig:data}
 \end{figure}
 
-Como há uma tendência melhor a achar soluções mais bem adaptadas quanto maior é o valor da mutação, o valor da mutação para os próximos experimentos foi fixado no maior possível.
+Como há uma tendência a achar soluções mais bem adaptadas quanto maior é o valor da mutação (e essa tendência é confirmada também pelas tabelas com as melhores fitness de cada taxa de mutação), o valor da mutação para os próximos experimentos foi fixado no maior possível dentro do limite estipulado, que é 0.3.
 
 \subsection{Cruzamento}
 
@@ -213,15 +217,15 @@ Nos gráficos para os testes de cruzamento, as cores azul, vermelho, marrom e pr
     \label{fig:data}
 \end{figure}
 
-Nos deparamos com um resutado curioso: diminuir o crossover para 0.8 melhora as qualidades das soluções consistentemente. Um aumento para 0.7 leva a resultados piores que os dois anteriores no geral, e espera-se que isso seja porque falta variabilidade na população, porém houve uma melhora a partir da redução para 0.6. Imagina-se que a menor taxa de crossover levou o algoritmo a convergir melhor em direção aos bons indivíduos, o que funciona bem a longo prazo.
+Nos deparamos com um resutado curioso: diminuir o crossover para 0.8 melhora as qualidades das soluções consistentemente. Um aumento para 0.7 leva a resultados piores que os dois anteriores no geral, e espera-se que isso seja porque falta variabilidade na população, porém houve uma melhora a partir da redução para 0.6. Imagina-se que a menor taxa de crossover levou o algoritmo a convergir melhor em direção aos bons indivíduos, o que funciona bem a curto prazo.
 
-Mesmo levando em conta esses resultados, a configuração que gerou os melhores resultados no geral foi $p_c = 0.8$, e portanto, ela foi mantida para os experimentos para obter o tamanho do torneio.
+Mesmo levando em conta esses resultados, a configuração que gerou os melhores resultados no geral foi $p_c = 0.8$, e portanto, ela foi mantida para os experimentos seguintes.
 
 \subsection{Torneio}
 
 Como explicitado antes, o torneio é a principal medida que regula o quão intensa é a pressão seletiva do GP.A mesma sequência de cores foi usada novamente para os gráficos, atribuindo azul a $T = 2$, vermelho a 3, marrom a 4 e preto a 5.
 
-Na análise desses dados, não se deve se ater apenas às qualidades das soluções encontradas, mas também aos aspectos dos gráficos. Percebemos na figura 9 que o menor valor para o torneio tem a tendência de fazer com que as melhores soluções tenham uma convergência estável: a cada passo, a média diminui uma quantidade razoável. Porém, o maior valor para o torneio faz com que a solução tenda a convergir em "picos": o erro diminui muito em um passo específico, e permanece quase constante durante outros.
+Na análise desses dados, expressos nos gráficos das figuras 7 a 9, não se deve se ater apenas às qualidades das soluções encontradas, mas também aos aspectos dos gráficos. Percebemos na figura 8 que o menor valor para o torneio tem a tendência de fazer com que as melhores soluções tenham uma convergência estável: a cada passo, a média diminui uma quantidade razoável. Porém, o maior valor para o torneio faz com que a solução tenda a convergir em "picos": o erro diminui muito em um passo específico, e permanece quase constante durante outros.
 
 \begin{figure}[!ht]
 	\centering
@@ -267,16 +271,38 @@ Na análise desses dados, não se deve se ater apenas às qualidades das soluç�
 
 Porém, analisando a qualidade das soluções finais para cada um dos gráficos, percebe-se que as maiores pressões seletivas prevalecem. Porém, o primeiro lugar parece compartilhado entre os valores 5 e 4, na keijzer-10 e keijzer-7, respectivamente.
 
-Ao analisar as funções em si, vemos que os erros para a primeira são uma ordem de grandeza maior do que a segunda, apesar de seus valores serem semelhantes. Isso sugere que a segunda função é mais difícil de se aproximar do que a primeira, portanto, uma convergência com muita pressão pode inibir a exploração extensiva do espaço, e capitalizar em uma investigação profunda de uma localidade que não é necessariamente a melhor.
+Ao analisar as funções em si, vemos que os erros para a primeira são uma ordem de grandeza maior do que a segunda, apesar de seus valores serem semelhantes. Isso sugere que a primeira função é mais fácil de se aproximar do que a segunda, portanto, uma convergência com muita pressão pode capitalizar muito em manter genes enquanto mais diversidade e abrangência são necessárias para ter melhores possibilidades de lidar com a função. A própria natureza desse segundo caso de teste pode ter contribuído para isso, como é discutido no tópico seguinte.
 
-Portanto, o valor de $T$ pode depender não só das outras características do algoritmo, mas também da função em si.
+Portanto, o valor de $T$ pode depender não só das outras características do algoritmo, mas também da função que se quer aprender.
+
+\subsection{Exemplos de melhores soluções e discussão}
+
+Vários exemplos de funções aproximativas foram obtidos ao se rodar o algoritmo com os valores $p_m = 0.3$, $p_c = 0.8$, $T = 4$, para cada um dos testes. Os arquivos estão na pasta \textit{test-logs/functions/}.
+
+Podemos fazer algumas observações a respeito, começando pelo dataset \textit{keijzer-10}, que possui apenas duas variáveis e resultados apresentados no arquivo de treino e teste são relativamente uniformes. Isso sugere que muitas funções que aparecem como melhores são funções menores e que impliquem uma relação direta entre as duas variáveis. Há uma grande incidência de respostas do tipo (a/b) ou (b/a) ou mesmo (a/a) entre as melhores (nesse caso, como o resultado é um, e os resultados apresentados no treino estão entre 0.5 e 1, o erro quadrático não será muito elevado. Os erros obtidos nessa função foram, muitas vezes, menores do que 0.1.
+
+Porém, o caso \textit{keijzer-7} não foi fácil de aproximar, sendo que os melhores erros atingidos muitas vezes não chegaram a estar abaixo de 1, mesmo que haja apenas uma variável. Os melhores indivíduos têm funções extremamente extensas e não tem quase nenhuma uniformidade entre si, tanto em genótipo quanto em fenótipo. Ao analisar o arquivo, vemos que ele sugere uma distribuição logarítmica. Isso não é tratado pelos operadores no programa, e complica o aprendizado. Para eventuais casos como esse, ter operadores de logaritmos, funções trigonométricas ou até mesmo potenciação possa ser vantajoso.
+
+Sobre o teste \textit{house}, como foi sugerido na especificação do trabalho prático, trata-se de um problema real e consiste em aprender uma função para deduzir o preço de uma casa a partir de uma série de fatores, cuja natureza não é conhecida. No geral, é notável que algumas variáveis que possuem valor numérico menor, como 'a', 'e' e 'f' aparecem sendo multiplicadas por constantes, o que sugere que elas tem uma grande chance de ser relevantes por intermédio de algum modificador.
+
+Como a ordem de grandeza dos resultados desse último caso é muito alta, e de seus operadores também, espera-se que os erros no geral sejam maiores, porém a sua convergência, como demonstrado nos gráficos acima, ocorra em um ritmo semelhante aos outros dois. Para esse teste, cerca de 250000 de erro é satisfatório, tendo em vista o escopo desse trabalho.
 
 \section{Conclusões}
+
+A série de experimentos realizada nesse trabalho pode levar a uma série de conclusões. Em primeiro lugar, ao analisar a divergência entre as configurações ótimas do GP entre uma função e outra, entende-se que pode ser possível inferir algo como uma lei de \textit{no free lunch} para algoritmos genéticos, como já existe uma para algoritmos de otimização [2].
+
+Por exemplo, a variância do valor de torneio ótimo entre os teste demonstra que não existe um ótimo global dominante deste valor para um algoritmo.
+
+Para melhorar o algoritmo apresentado, uma das opções mais razoáveis seria adicionar mais operadores para obter um espaço de funções mais versátil. Isso ajudaria em casos como o \textit{keijzer-7}, e muito provavelmente em problemas da vida real, sendo que vários comportamentos na natureza possuem comportamento que depende de funções exponenciais, logarítmicas, ou até que incluem números complexos, como interferências entre ondas [3].
+
+Outra possibilidade para melhorar a implementação em questão de eficiência seria representar o indivíduo como gramática em vez de usar a implementação tradicional como árvore. Tal decisão favorece a localidade de referência, e é um método popular para GPs [1, cap. 6].
 
 \section{Referências}
 
 \begin{enumerate}
 	\item \textit{A Field Guide To Genetic Programming.} - Riccardo Poli, William B. Langdon, and Nicholas F. McPhee, 2008
+	\item WOLPERT, David H., and William G. MACREADY, 1997. \textit{No free lunch theorems for optimization.} IEEE Transactions on Evolutionary Computation, 1(1), 67–82.
+	\item \texttt{http://physics.tutorvista.com/waves/wave-interference.html}
 \end{enumerate}
 
 \end{document}

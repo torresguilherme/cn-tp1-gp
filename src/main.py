@@ -127,10 +127,13 @@ class Node():
         node.extend()
 
     def print_node(self):
-        print(self.symbol)
         if self.type == Types.OPERATOR:
+            print('(', end='')
             self.branches[0].print_node()
+        print(self.symbol, end='')
+        if self.type == Types.OPERATOR:
             self.branches[1].print_node()
+            print(')', end='')
             
 #####################################
 ### GERACAO ALEATORIA DE INDIVIDUOS #
@@ -235,14 +238,18 @@ def main():
 
         ppl = new_ppl
 
+    best_node = Node(0, 0)
     best = sys.maxsize
     worst = 0
     for it in ppl:
         fitness = it.get_fitness(test_data)
         if fitness < best:
             best = fitness
+            best_node = it
         if fitness > worst:
             worst = it.fitness
+    best_node.print_node()
+    print(' ', best)
     return best
 
 if __name__ == '__main__':
@@ -253,5 +260,4 @@ if __name__ == '__main__':
         data.append(experiment)
         average += experiment
     average /= 30
-    print("final")
     print(average)
