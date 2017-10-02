@@ -2,7 +2,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amssymb}
+\usepackage{booktabs}
 \usepackage{array}
+\usepackage{pgfplotstable}
+\pgfplotstableset{
+  empty cells with={---},
+  every head row/.style={before row=\toprule,after row=\midrule},
+  every last row/.style={after row=\bottomrule}
+}
+\pgfplotsset{compat=1.9}
 
 \begin{document}
 
@@ -28,17 +36,35 @@ O algoritmo foi implementado em Python 3, na pasta /src. Instruções para execu
 O funcionamento do algoritmo pode ser descrito, no plano geral, pelos seguintes passos:
 
 \begin{enumerate}
-
-\item Geração aleatória dos primeiros indivíduos.
-
-\item 
-
+	\item Geração aleatória dos primeiros indivíduos;
+	\item Mostra a melhor, pior e média das fitness na população;
+	\item Adiciona o grupo elitista à nova população;
+	\item Repete até que o número de indivíduos na população possa ser reposto:
+	\begin{enumerate}
+		\item Seleciona dois pais através do torneio;
+		\item Aplica a probabilidade de cruzamento;
+		\item Ao se obter um cruzamento, aplica a chance de mutação;
+		\item Adiciona os filhos gerados à nova população;
+	\end{enumerate}
+	\item Repete desde o passo 2, até que o número máximo de gerações seja alcançado.
 \end{enumerate}
 
 Como é sugerido, há muitas variáveis envolvidas e deve-se encontrar o valor ótimo para elas por meio de experimentos.
 
 \subsection{Decisões de implementação}
 
+\begin{figure}[!ht]
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}
+        \addplot table [x index = 0, y index = 1] {data.txt};
+        \addplot table [x index = 0, y index = 2] {data.txt};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Data plot}
+    \label{fig:data}
+  \end{figure}
+  
 \subsection*{Indivíduo}
 
 Um indivíduo é representado por uma árvore, que tem um valor de uma função. Cada uma das folhas da árvore faz o papel de uma constante ou uma variável. As constantes são geradas aleatoriamente com números de ponto flutuante entre -10 e 10 (distribuição uniforme).
@@ -48,6 +74,10 @@ Os operadores escolhidos foram '+', '*' e '/', respectivamente, para adição, m
 \subsection*{Geração aleatória de indivíduos}
 
 Cada indivíduo começa com um operador a priori, e sua árvore é estendida até que todos os caminhos acabem em um terminal. Como a profundidade máxima do indivídio é 7, apenas terminais serão escolhidos aleatoriamente quando algum nó chegar na profundidade 6.
+
+\subsection{Cálculo da Fitness}
+
+A fitness de um indivíduo é dada pelo seu erro quadrático em relação ao resultado dado para um conjunto de variáveis da função que se quer aprender. 
 
 \subsection*{Seleção natural}
 
