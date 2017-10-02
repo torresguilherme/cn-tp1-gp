@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.8.22)  1 OCT 2017 22:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.30)  2 OCT 2017 09:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -821,7 +821,14 @@ File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code
 .tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.colt
-ype.code.tex))) (./doc.aux)
+ype.code.tex))) (./doc.aux
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
+)
 \openout1 = `doc.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -836,8 +843,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count119
 \scratchdimen=\dimen180
@@ -925,43 +931,89 @@ Overfull \hbox (8.59589pt too wide) in paragraph at lines 36--37
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-PGFPlots: reading {data.txt}
-PGFPlots: reading {data.txt}
-
-Overfull \hbox (2.55583pt too wide) in paragraph at lines 72--73
+Overfull \hbox (2.55583pt too wide) in paragraph at lines 60--61
 []\T1/cmr/m/n/10.95 Os op-er-adores es-col-hi-dos foram '+', '*' e '/', re-spec
 -ti-va-mente, para adição,
  []
 
-[2] [3] [4] [5] (./doc.aux) ) 
+[2] [3] [4]
+PGFPlots: reading {data/house/mutation/exp0.txt}
+PGFPlots: reading {data/house/mutation/exp1.txt}
+PGFPlots: reading {data/house/mutation/exp2.txt}
+PGFPlots: reading {data/house/mutation/exp3.txt}
+PGFPlots: reading {data/k10/mutation/exp0.txt}
+PGFPlots: reading {data/k10/mutation/exp1.txt}
+PGFPlots: reading {data/k10/mutation/exp2.txt}
+PGFPlots: reading {data/k10/mutation/exp3.txt}
+PGFPlots: reading {data/k7/mutation/exp0.txt}
+PGFPlots: reading {data/k7/mutation/exp1.txt}
+PGFPlots: reading {data/k7/mutation/exp2.txt}
+PGFPlots: reading {data/k7/mutation/exp3.txt}
+PGFPlots: reading {data/house/mutation/exp0.txt}
+PGFPlots: reading {data/house/mutation/exp1.txt}
+PGFPlots: reading {data/house/mutation/exp2.txt}
+PGFPlots: reading {data/house/mutation/exp3.txt}
+ [5]
+PGFPlots: reading {data/k10/mutation/exp0.txt}
+PGFPlots: reading {data/k10/mutation/exp1.txt}
+PGFPlots: reading {data/k10/mutation/exp2.txt}
+PGFPlots: reading {data/k10/mutation/exp3.txt}
+PGFPlots: reading {data/k7/mutation/exp0.txt}
+PGFPlots: reading {data/k7/mutation/exp1.txt}
+PGFPlots: reading {data/k7/mutation/exp2.txt}
+PGFPlots: reading {data/k7/mutation/exp3.txt}
+PGFPlots: reading {data/k7/mutation/exp0.txt}
+PGFPlots: reading {data/k7/mutation/exp1.txt}
+PGFPlots: reading {data/k7/mutation/exp2.txt}
+PGFPlots: reading {data/k7/mutation/exp3.txt}
+PGFPlots: reading {data/house/tournament/exp0.txt}
+PGFPlots: reading {data/house/tournament/exp1.txt}
+PGFPlots: reading {data/house/tournament/exp2.txt}
+PGFPlots: reading {data/house/tournament/exp3.txt}
+PGFPlots: reading {data/k10/tournament/exp0.txt}
+PGFPlots: reading {data/k10/tournament/exp1.txt}
+PGFPlots: reading {data/k10/tournament/exp2.txt}
+PGFPlots: reading {data/k10/tournament/exp3.txt}
+PGFPlots: reading {data/k7/tournament/exp0.txt}
+PGFPlots: reading {data/k7/tournament/exp1.txt}
+PGFPlots: reading {data/k7/tournament/exp2.txt}
+PGFPlots: reading {data/k7/tournament/exp3.txt}
+
+Overfull \vbox (13.49832pt too high) has occurred while \output is active []
+
+
+[6] [7] [8] [9] [10] (./doc.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 22839 strings out of 494902
- 596851 string characters out of 6179891
- 752634 words of memory out of 5000000
- 25738 multiletter control sequences out of 15000+600000
+ 22942 strings out of 494902
+ 599349 string characters out of 6179891
+ 1265020 words of memory out of 5000000
+ 25829 multiletter control sequences out of 15000+600000
  15456 words of font info for 46 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 69i,11n,103p,718b,1892s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/guilherme/.texlive2016/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecti1095.600pk> </home/guilherme/.texlive2016/texmf-var/font
-s/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/guilherme/.texlive2016/texmf-var
-/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/guilherme/.texlive2016/texm
-f-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/guilherme/.texlive2016
-/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/guilherme/.texliv
-e2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/guilherme/.t
-exlive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb>
-Output written on doc.pdf (5 pages, 141259 bytes).
+ 69i,11n,103p,718b,1890s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/guilherme/.texlive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095
+.600pk> </home/guilherme/.texlive2016/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
+x1200.600pk> </home/guilherme/.texlive2016/texmf-var/fonts/pk/ljfour/jknappen/e
+c/ectt1095.600pk> </home/guilherme/.texlive2016/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/ecrm1095.600pk> </home/guilherme/.texlive2016/texmf-var/fonts/pk/ljfour/
+jknappen/ec/ecbx1440.600pk> </home/guilherme/.texlive2016/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecrm1200.600pk> </home/guilherme/.texlive2016/texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on doc.pdf (10 pages, 277514 bytes).
 PDF statistics:
- 317 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 343 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

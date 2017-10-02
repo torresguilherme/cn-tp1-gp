@@ -52,18 +52,6 @@ O funcionamento do algoritmo pode ser descrito, no plano geral, pelos seguintes 
 Como é sugerido, há muitas variáveis envolvidas e deve-se encontrar o valor ótimo para elas por meio de experimentos.
 
 \subsection{Decisões de implementação}
-
-\begin{figure}[!ht]
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}
-        \addplot table [x index = 0, y index = 1] {data.txt};
-        \addplot table [x index = 0, y index = 2] {data.txt};
-      \end{axis}
-    \end{tikzpicture}
-    \caption{Data plot}
-    \label{fig:data}
-  \end{figure}
   
 \subsection*{Indivíduo}
 
@@ -114,6 +102,170 @@ Passar um pequeno grupo dos melhores indivíduos da população atual para a pr�
 Como o número de indivíduos da população é relativamente pequeno, julgou-se razoável manter o tamanho do grupo elitista em apenas um, para que a pressão seletiva não fosse desproporcional e assim, evitando que todos os indivíduos ficassem iguais antes do número de iterações desejado.
 
 \section{Experimentos}
+
+Os experimentos foram realizados em um desktop com sistema operacional Debian 9, Python 3.5.3, processador Pentium Dual Core (3.3 GHz) e 8GB de memória RAM. Foram usadas três bases de dados diferentes (house, keijzer-10 e keijzer-7, cada um com um arquivo de treino e teste, todos disponíveis na pasta \textit{/datasets}) Cada experimento foi repetido 30 vezes antes de se tirar as conclusões.
+
+Os atributos do algoritmo foram testados na seguinte ordem:
+
+\begin{enumerate}
+	\item Variação de $p_m$ de 0.05 a 0.3
+	\item Variação de $p_c$ de 0.9 a 0.6
+	\item Variação de $T$ de 2 a 5
+\end{enumerate}
+
+Os gráficos plotados a seguir incluem a média aritmética dos dados dos experimentos obtidos para cada configuração, no \textit{arquivo de treino}. As tabelas apresentam a média dos melhores valores obtidos para a função, levando em consideração o \textit{arquivo de teste}.
+
+\subsection{Mutação}
+
+As figuras de 1 a 3 demonstram a média do erro das melhores soluções para os arquivos de teste nos experimentos realizados. Os plots azul, vermelho, marrom e preto equivalem, respectivamente, às taxas de mutação de 0.05, 0.1, 0.15 e 0.2.
+
+Os dados plotados dão uma boa ideia de como a solução converge. Podemos reparar que, como era esperado, valores maiores de mutação são os que promovem a diversidade necessária para que a convergência a longo prazo seja mais favorável. Este parece ser o caso para todos os conjuntos de dados.
+
+Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, porém facilita a convergência. Pode-se perceber que o menor valor de mutação (linha azul) no geral converge relativamente rapidamente, porém nos dois últimos testes (que são bases de dados menores e com menos variáveis), ele fica estagnado. Isso pode ser um sinal de que os indivíduos da população ficam iguais em certo ponto, e a chance de se conseguir sair dessa situação é baixa.
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, house-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, keijzer-10-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, keijzer-7-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\subsection{Cruzamento}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, house-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, keijzer-10-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, keijzer-7-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, keijzer-7-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\subsection{Torneio}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/house/tournament/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/tournament/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/tournament/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/tournament/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, house-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/k10/tournament/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/tournament/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/tournament/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/tournament/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, keijzer-10-train.csv}
+    \label{fig:data}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}
+        	\addplot table [x index = 0, y index = 1] {data/k7/tournament/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/tournament/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/tournament/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/tournament/exp3.txt};
+      	\end{axis}
+    \end{tikzpicture}
+    \caption{Testes de mutação: melhores soluções, keijzer-7-train.csv}
+    \label{fig:data}
+\end{figure}
 
 \section{Conclusões}
 
