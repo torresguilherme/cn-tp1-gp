@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.30)  2 OCT 2017 09:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.30)  2 OCT 2017 14:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -828,6 +828,24 @@ LaTeX Warning: Label `fig:data' multiply defined.
 
 LaTeX Warning: Label `fig:data' multiply defined.
 
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
+
+LaTeX Warning: Label `fig:data' multiply defined.
+
 )
 \openout1 = `doc.aux'.
 
@@ -945,27 +963,25 @@ PGFPlots: reading {data/k10/mutation/exp0.txt}
 PGFPlots: reading {data/k10/mutation/exp1.txt}
 PGFPlots: reading {data/k10/mutation/exp2.txt}
 PGFPlots: reading {data/k10/mutation/exp3.txt}
-PGFPlots: reading {data/k7/mutation/exp0.txt}
-PGFPlots: reading {data/k7/mutation/exp1.txt}
-PGFPlots: reading {data/k7/mutation/exp2.txt}
-PGFPlots: reading {data/k7/mutation/exp3.txt}
-PGFPlots: reading {data/house/mutation/exp0.txt}
-PGFPlots: reading {data/house/mutation/exp1.txt}
-PGFPlots: reading {data/house/mutation/exp2.txt}
-PGFPlots: reading {data/house/mutation/exp3.txt}
  [5]
-PGFPlots: reading {data/k10/mutation/exp0.txt}
-PGFPlots: reading {data/k10/mutation/exp1.txt}
-PGFPlots: reading {data/k10/mutation/exp2.txt}
-PGFPlots: reading {data/k10/mutation/exp3.txt}
 PGFPlots: reading {data/k7/mutation/exp0.txt}
 PGFPlots: reading {data/k7/mutation/exp1.txt}
 PGFPlots: reading {data/k7/mutation/exp2.txt}
 PGFPlots: reading {data/k7/mutation/exp3.txt}
-PGFPlots: reading {data/k7/mutation/exp0.txt}
-PGFPlots: reading {data/k7/mutation/exp1.txt}
-PGFPlots: reading {data/k7/mutation/exp2.txt}
-PGFPlots: reading {data/k7/mutation/exp3.txt}
+ [6]
+PGFPlots: reading {data/house/crossover/mut0.3/exp0.txt}
+PGFPlots: reading {data/house/crossover/mut0.3/exp1.txt}
+PGFPlots: reading {data/house/crossover/mut0.3/exp2.txt}
+PGFPlots: reading {data/house/crossover/mut0.3/exp3.txt}
+PGFPlots: reading {data/k10/crossover/mut0.3/exp0.txt}
+PGFPlots: reading {data/k10/crossover/mut0.3/exp1.txt}
+PGFPlots: reading {data/k10/crossover/mut0.3/exp2.txt}
+PGFPlots: reading {data/k10/crossover/mut0.3/exp3.txt}
+PGFPlots: reading {data/k7/crossover/mut0.3/exp0.txt}
+PGFPlots: reading {data/k7/crossover/mut0.3/exp1.txt}
+PGFPlots: reading {data/k7/crossover/mut0.3/exp2.txt}
+PGFPlots: reading {data/k7/crossover/mut0.3/exp3.txt}
+ [7]
 PGFPlots: reading {data/house/tournament/exp0.txt}
 PGFPlots: reading {data/house/tournament/exp1.txt}
 PGFPlots: reading {data/house/tournament/exp2.txt}
@@ -978,20 +994,16 @@ PGFPlots: reading {data/k7/tournament/exp0.txt}
 PGFPlots: reading {data/k7/tournament/exp1.txt}
 PGFPlots: reading {data/k7/tournament/exp2.txt}
 PGFPlots: reading {data/k7/tournament/exp3.txt}
-
-Overfull \vbox (13.49832pt too high) has occurred while \output is active []
-
-
-[6] [7] [8] [9] [10] (./doc.aux)
+ [8] [9] [10] (./doc.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 22942 strings out of 494902
- 599349 string characters out of 6179891
- 1265020 words of memory out of 5000000
- 25829 multiletter control sequences out of 15000+600000
+ 22951 strings out of 494902
+ 599870 string characters out of 6179891
+ 980402 words of memory out of 5000000
+ 25835 multiletter control sequences out of 15000+600000
  15456 words of font info for 46 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  69i,11n,103p,718b,1890s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1010,9 +1022,9 @@ onts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on doc.pdf (10 pages, 277514 bytes).
+Output written on doc.pdf (10 pages, 271204 bytes).
 PDF statistics:
- 343 PDF objects out of 1000 (max. 8388607)
+ 344 PDF objects out of 1000 (max. 8388607)
  79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)

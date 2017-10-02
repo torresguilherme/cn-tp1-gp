@@ -117,7 +117,7 @@ Os gráficos plotados a seguir incluem a média aritmética dos dados dos experi
 
 \subsection{Mutação}
 
-As figuras de 1 a 3 demonstram a média do erro das melhores soluções para os arquivos de teste nos experimentos realizados. Os plots azul, vermelho, marrom e preto equivalem, respectivamente, às taxas de mutação de 0.05, 0.1, 0.15 e 0.2.
+As figuras de 1 a 3 demonstram a média do erro das melhores soluções para os arquivos de teste nos experimentos realizados. No momento, os testes estão sendo realizados com $p_m = 0.05$ e $p_c = 0.9$. Os plots azul, vermelho, marrom e preto equivalem, respectivamente, às taxas de mutação de 0.05, 0.1, 0.15 e 0.2.
 
 Os dados plotados dão uma boa ideia de como a solução converge. Podemos reparar que, como era esperado, valores maiores de mutação são os que promovem a diversidade necessária para que a convergência a longo prazo seja mais favorável. Este parece ser o caso para todos os conjuntos de dados.
 
@@ -165,19 +165,23 @@ Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, p
     \label{fig:data}
 \end{figure}
 
+Como há uma tendência melhor a achar soluções mais bem adaptadas quanto maior é o valor da mutação, o valor da mutação para os próximos experimentos foi fixado no maior possível.
+
 \subsection{Cruzamento}
 
+Nos gráficos para os testes de cruzamento, as cores azul, vermelho, marrom e preto corresponder respectivamente às chances de cruzamento de 0.9, 0.8, 0.7 e 0.6. Sabemos que o cruzamento visa conseguir alguma variabilidade genética na população, porém não de forma radical como a mutação. Como a mutação está bem alta, é de se esperar que achemos um limite superior para a probabilidade de crossover durante essa série de experimentos. Os resultados estão à mostra nas figuras 4, 5 e 6.
+
 \begin{figure}[!ht]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}
-        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp0.txt};
-        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp1.txt};
-        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp2.txt};
-        	\addplot table [x index = 0, y index = 1] {data/house/mutation/exp3.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/crossover/mut0.3/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/crossover/mut0.3/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/crossover/mut0.3/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/house/crossover/mut0.3/exp3.txt};
       	\end{axis}
     \end{tikzpicture}
-    \caption{Testes de mutação: melhores soluções, house-train.csv}
+    \caption{Testes de cruzamento: melhores soluções, house-train.csv}
     \label{fig:data}
 \end{figure}
 
@@ -185,13 +189,13 @@ Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, p
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}
-        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp0.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp1.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp2.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k10/mutation/exp3.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/crossover/mut0.3/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/crossover/mut0.3/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/crossover/mut0.3/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k10/crossover/mut0.3/exp3.txt};
       	\end{axis}
     \end{tikzpicture}
-    \caption{Testes de mutação: melhores soluções, keijzer-10-train.csv}
+    \caption{Testes de cruzamento: melhores soluções, keijzer-10-train.csv}
     \label{fig:data}
 \end{figure}
 
@@ -199,31 +203,25 @@ Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, p
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp0.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp1.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp2.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp3.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/crossover/mut0.3/exp0.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/crossover/mut0.3/exp1.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/crossover/mut0.3/exp2.txt};
+        	\addplot table [x index = 0, y index = 1] {data/k7/crossover/mut0.3/exp3.txt};
       	\end{axis}
     \end{tikzpicture}
-    \caption{Testes de mutação: melhores soluções, keijzer-7-train.csv}
+    \caption{Testes de cruzamento: melhores soluções, keijzer-7-train.csv}
     \label{fig:data}
 \end{figure}
 
-\begin{figure}[!ht]
-	\centering
-	\begin{tikzpicture}
-		\begin{axis}
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp0.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp1.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp2.txt};
-        	\addplot table [x index = 0, y index = 1] {data/k7/mutation/exp3.txt};
-      	\end{axis}
-    \end{tikzpicture}
-    \caption{Testes de mutação: melhores soluções, keijzer-7-train.csv}
-    \label{fig:data}
-\end{figure}
+Nos deparamos com um resutado curioso: diminuir o crossover para 0.8 melhora as qualidades das soluções consistentemente. Um aumento para 0.7 leva a resultados piores que os dois anteriores no geral, e espera-se que isso seja porque falta variabilidade na população, porém houve uma melhora a partir da redução para 0.6. Imagina-se que a menor taxa de crossover levou o algoritmo a convergir melhor em direção aos bons indivíduos, o que funciona bem a longo prazo.
+
+Mesmo levando em conta esses resultados, a configuração que gerou os melhores resultados no geral foi $p_c = 0.8$, e portanto, ela foi mantida para os experimentos para obter o tamanho do torneio.
 
 \subsection{Torneio}
+
+Como explicitado antes, o torneio é a principal medida que regula o quão intensa é a pressão seletiva do GP.A mesma sequência de cores foi usada novamente para os gráficos, atribuindo azul a $T = 2$, vermelho a 3, marrom a 4 e preto a 5.
+
+Na análise desses dados, não se deve se ater apenas às qualidades das soluções encontradas, mas também aos aspectos dos gráficos. Percebemos na figura 9 que o menor valor para o torneio tem a tendência de fazer com que as melhores soluções tenham uma convergência estável: a cada passo, a média diminui uma quantidade razoável. Porém, o maior valor para o torneio faz com que a solução tenda a convergir em "picos": o erro diminui muito em um passo específico, e permanece quase constante durante outros.
 
 \begin{figure}[!ht]
 	\centering
@@ -235,7 +233,7 @@ Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, p
         	\addplot table [x index = 0, y index = 1] {data/house/tournament/exp3.txt};
       	\end{axis}
     \end{tikzpicture}
-    \caption{Testes de mutação: melhores soluções, house-train.csv}
+    \caption{Testes de torneio: melhores soluções, house-train.csv}
     \label{fig:data}
 \end{figure}
 
@@ -249,7 +247,7 @@ Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, p
         	\addplot table [x index = 0, y index = 1] {data/k10/tournament/exp3.txt};
       	\end{axis}
     \end{tikzpicture}
-    \caption{Testes de mutação: melhores soluções, keijzer-10-train.csv}
+    \caption{Testes de torneio: melhores soluções, keijzer-10-train.csv}
     \label{fig:data}
 \end{figure}
 
@@ -263,9 +261,15 @@ Usar um valor de mutação mais baixo, por sua vez, promove menos diversidade, p
         	\addplot table [x index = 0, y index = 1] {data/k7/tournament/exp3.txt};
       	\end{axis}
     \end{tikzpicture}
-    \caption{Testes de mutação: melhores soluções, keijzer-7-train.csv}
+    \caption{Testes de torneio: melhores soluções, keijzer-7-train.csv}
     \label{fig:data}
 \end{figure}
+
+Porém, analisando a qualidade das soluções finais para cada um dos gráficos, percebe-se que as maiores pressões seletivas prevalecem. Porém, o primeiro lugar parece compartilhado entre os valores 5 e 4, na keijzer-10 e keijzer-7, respectivamente.
+
+Ao analisar as funções em si, vemos que os erros para a primeira são uma ordem de grandeza maior do que a segunda, apesar de seus valores serem semelhantes. Isso sugere que a segunda função é mais difícil de se aproximar do que a primeira, portanto, uma convergência com muita pressão pode inibir a exploração extensiva do espaço, e capitalizar em uma investigação profunda de uma localidade que não é necessariamente a melhor.
+
+Portanto, o valor de $T$ pode depender não só das outras características do algoritmo, mas também da função em si.
 
 \section{Conclusões}
 
